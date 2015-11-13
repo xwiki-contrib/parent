@@ -35,7 +35,6 @@ function set_version_all() {
   echo              "*****************************"
 
   set_version parent-commons
-  set_version parent-rendering
   set_version parent-platform
 }
 
@@ -70,7 +69,6 @@ function deploy_all() {
   echo              "*****************************"
 
   deploy_pom parent-commons
-  deploy_pom parent-rendering
   deploy_pom parent-platform
 }
 
