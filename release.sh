@@ -44,7 +44,7 @@ function commit_all() {
   echo -e "\033[1;32m    Commit new version\033[0m"
   echo              "*****************************"
 
-  git commit -a -m "[release] Set version"
+  git commit -a -m "[release] Set version" || true
 }
 
 function tag_all() {
