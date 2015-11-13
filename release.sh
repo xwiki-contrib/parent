@@ -31,7 +31,7 @@ function set_version() {
 
 function set_version_all() {
   echo              "*****************************"
-  echo -e "\033[1;32m    Set version ${VERSION} in all pom files\033[0m"
+  echo -e "\033[0;32m    Set version ${VERSION} in all pom files\033[0m"
   echo              "*****************************"
 
   set_version parent-commons
@@ -40,7 +40,7 @@ function set_version_all() {
 
 function commit_all() {
   echo              "*****************************"
-  echo -e "\033[1;32m    Commit new version\033[0m"
+  echo -e "\033[0;32m    Commit new version\033[0m"
   echo              "*****************************"
 
   git commit -a -m "[release] Set version" || true
@@ -48,7 +48,7 @@ function commit_all() {
 
 function tag_all() {
   echo              "*****************************"
-  echo -e "\033[1;32m    Create tag for new version\033[0m"
+  echo -e "\033[0;32m    Create tag for new version\033[0m"
   echo              "*****************************"
 
   git tag -m "Tagging ${parent-$VERSION}" parent-${VERSION}
@@ -65,7 +65,7 @@ function deploy_pom() {
 
 function deploy_all() {
   echo              "*****************************"
-  echo -e "\033[1;32m    Deploy all pom files\033[0m"
+  echo -e "\033[0;32m    Deploy all pom files\033[0m"
   echo              "*****************************"
 
   deploy_pom parent-commons
@@ -75,7 +75,7 @@ function deploy_all() {
 # Check version to release
 if [[ -z $VERSION ]]
 then
-  echo -e "Which version are you releasing?\033[0;32m"
+  echo -e "Which version are you releasing?\033[0"
   read -e -p "> " VERSION
   echo -n -e "\033[0m"
   export VERSION=$VERSION
@@ -88,5 +88,5 @@ commit_all
 tag_all
 deploy_all
 
-echo -e "\033[0;32m Push changes and tag\033[0;32m"
+echo -e "\033[0;32m Push changes and tag\033[0"
 git push --tags
