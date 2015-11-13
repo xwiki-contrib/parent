@@ -1,8 +1,32 @@
+#!/bin/bash
+
+# ---------------------------------------------------------------------------
+# See the NOTICE file distributed with this work for additional
+# information regarding copyright ownership.
+#
+# This is free software; you can redistribute it and/or modify it
+# under the terms of the GNU Lesser General Public License as
+# published by the Free Software Foundation; either version 2.1 of
+# the License, or (at your option) any later version.
+#
+# This software is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this software; if not, write to the Free
+# Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+# 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+# ---------------------------------------------------------------------------
+
 function set_version() {
   cd $1
 
   echo -e "\033[0;32m* Set version ${VERSION} in ${1}\033[0m"
   mvn versions:set -DnewVersion=$VERSION
+
+  cd ..
 }
 
 function set_version_all() {
@@ -20,7 +44,7 @@ function commit_all() {
   echo -e "\033[1;32m    Commit new version\033[0m"
   echo              "*****************************"
 
-  mvn commit -a -m "[release] Set version"
+  git commit -a -m "[release] Set version"
 }
 
 function tag_all() {
@@ -35,7 +59,9 @@ function deploy_pom() {
   cd $1
 
   echo -e "\033[0;32m* Deploy version ${1} ${VERSION}\033[0m"
-  mvn deploy  
+  mvn deploy
+
+  cd ..
 }
 
 function deploy_all() {
@@ -57,8 +83,12 @@ then
   export VERSION=$VERSION
 fi
 
+set -e
+
 set_version_all
 commit_all
 tag_all
 deploy_all
 
+echo -e "\033[0;32m Push changes and tag\033[0;32m"
+git push --tags
