@@ -57,8 +57,8 @@ then
   export VERSION=$VERSION
 fi
 
-set_version_all()
-commit_all()
-tag_all()
-deploy_all()
+set_version_all
+commit_all
+tag_all
+deploy_all
 
