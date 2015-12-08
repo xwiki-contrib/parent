@@ -2,7 +2,7 @@ Provide various parent pom.xml for contrib extensions
 
 # Versions
 
-Version is <branch>-<buildnumber> as in 6.4-3 which is the 3rd version of the parent pom to use for contrib extension which support XWiki 6.4 version and more.
+Version is \<branch>-\<buildnumber> as in 6.4-3 which is the 3rd version of the parent pom to use for contrib extension which support XWiki 6.4 version and more.
 
 # Release
 
