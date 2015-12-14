@@ -11,3 +11,7 @@ The Maven Release Plugin cannot be used for these pom.xml because one of the goa
 * Go to the right branch
 * ./release.sh
 * Go to http://nexus.xwiki.org, close and release the corresponding staging repository
+
+# TODO
+
+Setup org.sonatype.plugins:nexus-staging-maven-plugin plugin for the Nexus validation step to be done automatically.
