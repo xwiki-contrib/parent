@@ -4,19 +4,23 @@ Provide various parent pom.xml for contrib extensions
 
 For extensions having xwiki-platform dependencies:
 
+```xml
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>parent-platform</artifactId>
     <version>7.4</version>
   </parent>
+```
 
 For extensions having xwiki-commons dependencies only:
 
+```xml
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>parent-commons</artifactId>
     <version>7.4</version>
   </parent>
+```
 
 # Versions
 
