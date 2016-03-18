@@ -58,7 +58,7 @@ function deploy_pom() {
   cd $1
 
   echo -e "\033[0;32m* Deploy version ${1} ${VERSION}\033[0m"
-  mvn deploy -Denforcer.skip=true
+  mvn deploy -Dxwiki.enforcer.skip=true
 
   cd ..
 }
