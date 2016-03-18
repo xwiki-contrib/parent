@@ -30,7 +30,7 @@
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>parent-platform</artifactId>
   <version>7.4</version>
-  <name>Rendering Contrib Extension</name>
+  <name>Contrib Extension</name>
   <packaging>pom</packaging>
   <description>Contrib extension which depends on xwiki-platform</description>
 
