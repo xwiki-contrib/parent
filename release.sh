@@ -75,7 +75,7 @@ function deploy_all() {
 # Check version to release
 if [[ -z $VERSION ]]
 then
-  echo -e "Which version are you releasing?\033[0"
+  echo -e "Which version are you releasing?"
   read -e -p "> " VERSION
   echo -n -e "\033[0m"
   export VERSION=$VERSION
