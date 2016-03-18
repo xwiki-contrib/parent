@@ -32,7 +32,7 @@
   <version>7.4</version>
   <name>Contrib Extension</name>
   <packaging>pom</packaging>
-  <description>Contrib extension which depends on xwiki-rendering</description>
+  <description>Contrib extension which depends on xwiki-commons</description>
 
   <!-- Make sure the extension don't ends up with xwiki-commons url-->
   <url/>
