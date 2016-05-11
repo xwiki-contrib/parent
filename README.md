@@ -2,6 +2,16 @@ Provide various parent pom.xml for contrib extensions
 
 # Example
 
+For XAR extensions:
+
+```xml
+  <parent>
+    <groupId>org.xwiki.contrib</groupId>
+    <artifactId>parent-platform-xar</artifactId>
+    <version>7.4</version>
+  </parent>
+```
+
 For extensions having xwiki-platform dependencies:
 
 ```xml
