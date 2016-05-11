@@ -36,6 +36,7 @@ function set_version_all() {
 
   set_version parent-commons
   set_version parent-platform
+  set_version parent-platform-xar
 }
 
 function commit_all() {
@@ -70,6 +71,7 @@ function deploy_all() {
 
   deploy_pom parent-commons
   deploy_pom parent-platform
+  deploy_pom parent-platform-xar
 }
 
 # Check version to release
