@@ -29,6 +29,15 @@ function set_version() {
   cd ..
 }
 
+function set_parent_version() {
+  cd $1
+
+  echo -e "\033[0;32m* Set parent version ${VERSION} in ${1}\033[0m"
+  xsltproc -o pom.xml --stringparam parentversion "${VERSION}" ../set-parent-version.xslt pom.xml
+
+  cd ..
+}
+
 function set_version_all() {
   echo              "*****************************"
   echo -e "\033[0;32m    Set version ${VERSION} in all pom files\033[0m"
@@ -36,7 +45,7 @@ function set_version_all() {
 
   set_version parent-commons
   set_version parent-platform
-  set_version parent-platform-xar
+  set_parent_version parent-platform-xar
 }
 
 function commit_all() {
