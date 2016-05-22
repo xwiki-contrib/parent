@@ -8,7 +8,7 @@ For extensions having xwiki-platform dependencies:
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>parent-platform</artifactId>
-    <version>7.4-1</version>
+    <version>7.4-2</version>
   </parent>
 ```
 
@@ -18,7 +18,7 @@ For extensions having xwiki-commons dependencies only:
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>parent-commons</artifactId>
-    <version>7.4-1</version>
+    <version>7.4-2</version>
   </parent>
 ```
 
