@@ -28,7 +28,7 @@
     <version>7.4</version>
   </parent>
   <groupId>org.xwiki.contrib</groupId>
-  <artifactId>parent</artifactId>
+  <artifactId>parent-commons</artifactId>
   <version>7.4-1</version>
   <name>Contrib Extension</name>
   <packaging>pom</packaging>
