@@ -1,4 +1,6 @@
-Provide various parent pom.xml for contrib extensions
+Provide various parent pom.xml for contrib extensions.
+
+Extensions are automatically release on http://nexus.xwiki.org if your user have the release right.
 
 # Example
 
@@ -33,7 +35,3 @@ The Maven Release Plugin cannot be used for these pom.xml because one of the goa
 * Go to the right branch
 * ./release.sh
 * Go to http://nexus.xwiki.org, close and release the corresponding staging repository
-
-# TODO
-
-Setup org.sonatype.plugins:nexus-staging-maven-plugin plugin for the Nexus validation step to be done automatically.
