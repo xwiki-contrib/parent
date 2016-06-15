@@ -34,6 +34,11 @@
   <packaging>pom</packaging>
   <description>Contrib extension which depends on xwiki-platform</description>
 
+  <properties>
+    <!-- Enable auto release by default -->
+    <xwiki.nexus.autoReleaseAfterClose>true</xwiki.nexus.autoReleaseAfterClose>
+  </properties>
+
   <build>
     <pluginManagement>
       <plugins>
@@ -73,7 +78,7 @@
         <configuration>
           <serverId>xwiki-staging</serverId>
           <nexusUrl>http://nexus.xwiki.org/nexus/</nexusUrl>
-          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+          <autoReleaseAfterClose>${xwiki.nexus.autoReleaseAfterClose}</autoReleaseAfterClose>
         </configuration>
       </plugin>
       <plugin>
