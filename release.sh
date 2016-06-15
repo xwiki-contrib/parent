@@ -78,6 +78,7 @@ function deploy_all() {
   echo              "*****************************"
 
   deploy_pom parent-commons
+  deploy_pom parent-rendering
   deploy_pom parent-platform
 }
 
