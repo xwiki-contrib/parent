@@ -44,6 +44,7 @@ function set_version_all() {
   echo              "*****************************"
 
   set_version parent-commons
+  set_version parent-rendering
   set_version parent-platform
 }
 
