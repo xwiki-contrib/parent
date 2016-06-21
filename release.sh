@@ -24,7 +24,7 @@ function set_version() {
   cd $1
 
   echo -e "\033[0;32m* Set version ${VERSION} in ${1}\033[0m"
-  mvn versions:set -DnewVersion=$VERSION
+  mvn versions:set -DgenerateBackupPoms=false -DnewVersion=$VERSION
 
   cd ..
 }
