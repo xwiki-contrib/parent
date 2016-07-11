@@ -40,7 +40,6 @@
 
     <!-- Disable clirr by default (since it does not make any sense until previous version is set) -->
     <xwiki.clirr.previous.version/>
-    <xwiki.clirr.skip>false</xwiki.clirr.skip>
   </properties>
 
   <build>
