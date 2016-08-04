@@ -39,6 +39,7 @@
     <xwiki.nexus.autoReleaseAfterClose>true</xwiki.nexus.autoReleaseAfterClose>
 
     <!-- Put clirr back in automatic mode -->
+    <xwiki.clirr.previous.version/>
   </properties>
 
   <build>
