@@ -25,11 +25,11 @@
   <parent>
     <groupId>org.xwiki.rendering</groupId>
     <artifactId>xwiki-rendering</artifactId>
-    <version>7.4</version>
+    <version>6.4</version>
   </parent>
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>parent-rendering</artifactId>
-  <version>7.4-7</version>
+  <version>6.4-2</version>
   <name>Contrib Extension</name>
   <packaging>pom</packaging>
   <description>Contrib extension which depends on xwiki-rendering</description>
@@ -38,7 +38,7 @@
     <!-- Enable auto release by default -->
     <xwiki.nexus.autoReleaseAfterClose>true</xwiki.nexus.autoReleaseAfterClose>
 
-    <!-- Disable clirr by default (since it does not make any sense until previous version is set) -->
+    <!-- Put clirr back in automatic mode -->
     <xwiki.clirr.previous.version/>
   </properties>
 
@@ -46,28 +46,10 @@
     <pluginManagement>
       <plugins>
         <plugin>
+          <!-- Use recent version of Maven Release plugin -->
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-enforcer-plugin</artifactId>
-          <dependencies>
-            <dependency>
-              <groupId>org.xwiki.commons</groupId>
-              <artifactId>xwiki-commons-tool-enforcer-dependencies</artifactId>
-              <version>${commons.version}</version>
-            </dependency>
-          </dependencies>
-          <executions>
-            <execution>
-              <id>enforce-valid-poms</id>
-              <goals>
-                <goal>enforce</goal>
-              </goals>
-              <configuration>
-                <!-- Workaround regression introduced in XCOMMONS-895. See XCOMMONS-979. -->
-                <!-- TODO: use xwiki-commons-tool-enforcer-dependencies 7.4.4 instead when released -->
-                <skip>true</skip>
-              </configuration>
-            </execution>
-          </executions>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.5.3</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -116,18 +98,6 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <!-- Workaround http://jira.xwiki.org/browse/XRENDERING-455 -->
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <dependencies>
-          <dependency>
-            <groupId>org.xwiki.commons</groupId>
-            <artifactId>xwiki-commons-tool-test-simple</artifactId>
-            <version>${commons.version}</version>
-          </dependency>
-        </dependencies>
       </plugin>
     </plugins>
   </build>
