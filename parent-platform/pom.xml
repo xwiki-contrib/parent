@@ -35,6 +35,8 @@
   <description>Contrib extension which depends on xwiki-platform</description>
 
   <properties>
+    <!-- Enable Nexus plugin by default -->
+    <xwiki.nexus.skipStaging>false</xwiki.nexus.skipStaging>
     <!-- Enable auto release by default -->
     <xwiki.nexus.autoReleaseAfterClose>true</xwiki.nexus.autoReleaseAfterClose>
 
@@ -82,6 +84,7 @@
           <serverId>xwiki-staging</serverId>
           <nexusUrl>http://nexus.xwiki.org/nexus/</nexusUrl>
           <autoReleaseAfterClose>${xwiki.nexus.autoReleaseAfterClose}</autoReleaseAfterClose>
+          <skipStaging>${xwiki.nexus.skipStaging}</skipStaging>
         </configuration>
       </plugin>
       <plugin>
