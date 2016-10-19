@@ -44,4 +44,3 @@ The Maven Release Plugin cannot be used for these pom.xml because one of the goa
 
 * Go to the right branch
 * ./release.sh
-* Go to http://nexus.xwiki.org, close and release the corresponding staging repository
