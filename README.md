@@ -36,7 +36,7 @@ For extensions having xwiki-commons dependencies only:
 
 # Versions
 
-Version is \<branch>-\<buildnumber> as in 6.4-3 which is the 3rd version of the parent pom to use for contrib extension which support XWiki 6.4 version and more.
+Version is \<branch>-\<buildnumber> as in 7.4-8 which is the 8th version of the parent pom to use for contrib extension which support XWiki 7.4 version and more.
 
 # Release of a new parent pom
 
