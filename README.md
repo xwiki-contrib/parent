@@ -87,7 +87,7 @@ You will also need to indicate your credentials in ~/.m2/settings.xml file:
   </server>
 ```
 
-Of course don't forget to indicate your the URL of your project's jira:
+Of course don't forget to indicate the URL of your project's jira:
 
 ```xml
   <issueManagement>
