@@ -77,6 +77,25 @@ If you want to automatically release the (already existing) version on Jira when
   </properties>
 ```
 
+You will also need to indicate your credentials in ~/.m2/settings.xml file:
+
+```xml
+  <server>
+    <id>jira.xwiki.org</id>
+    <username>myJiraLogin</username>
+    <password>myJiraPassword</password>
+  </server>
+```
+
+Of course don't forget to indicate your the URL of your project's jira:
+
+```xml
+  <issueManagement>
+   <system>jira</system>
+   <url>http://jira.xwiki.org/jira/browse/LDAP</url>
+ </issueManagement>
+```
+
 # Release of a new parent pom
 
 The Maven Release Plugin cannot be used for these pom.xml because one of the goal is to make sure release setup is a clean slate when you use them as parent.
