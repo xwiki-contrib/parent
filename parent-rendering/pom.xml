@@ -40,8 +40,11 @@
     <!-- Enable auto release by default -->
     <xwiki.nexus.autoReleaseAfterClose>true</xwiki.nexus.autoReleaseAfterClose>
 
-    <!-- Disable clirr by default (since it does not make any sense until previous version is set) -->
-    <xwiki.clirr.previous.version/>
+    <!-- Put clirr back in automatic mode -->
+    <xwiki.compatibility.previous.version/>
+
+    <!-- Auto release on jira is disabled by default -->
+    <xwiki.release.jira.skip>true</xwiki.release.jira.skip>
   </properties>
 
   <build>
@@ -134,6 +137,41 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <!-- Profile enabled during release -->
+    <profile>
+      <id>release</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <!-- Automatically release on Jira (if the version already exist and if the plugin is not skipped) -->
+          <plugin>
+            <groupId>net.sigmalab.maven.plugins</groupId>
+            <artifactId>jira-maven-plugin</artifactId>
+            <version>0.4</version>
+            <configuration>
+              <skip>${xwiki.release.jira.skip}</skip>
+              <settingsKey>jira.xwiki.org</settingsKey>
+            </configuration>
+            <executions>
+              <execution>
+                <phase>deploy</phase>
+                <goals>
+                  <goal>release-jira-version</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
   <!-- Make sure the extension don't ends up with xwiki-commons url-->
   <url/>
