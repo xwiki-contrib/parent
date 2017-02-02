@@ -226,11 +226,11 @@
   <developers>
     <developer/>
   </developers>
-  
+
   <!-- Make sure the extension don't ends up with xwiki-commons issueManagement -->
   <issueManagement>
-    <system/>
-    <url/>
+    <system>${xwiki.issueManagement.system}</system>
+    <url>${xwiki.issueManagement.url}</url>
   </issueManagement>
 
   <!-- Set a more accurate organization -->
