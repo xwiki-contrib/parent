@@ -67,9 +67,19 @@ By default the maven artifact are going to be automatically released on http://n
   </properties>
 ```
 
+## Issue Management
+
+You can set the issue management system and URL in the properties as follow:
+
+
+```xml
+    <xwiki.issueManagement.system>jira<xwiki.issueManagement.system>
+    <xwiki.issueManagement.url>https://jira.xwiki.org/jira/browse/LDAP</xwiki.issueManagement.url>
+```
+
 ## Enable automatic Jira release
 
-If you want to automatically release the (already existing) version on Jira when you release on Maven you can enable it using the Maven property "xwiki.release.jira.skip" as in:
+If you want to automatically create (if it does not already exist) and release the version on Jira when you release on Maven you can enable it using the Maven property "xwiki.release.jira.skip" as in:
 
 ```xml
   <properties>
@@ -85,15 +95,6 @@ You will also need to indicate your credentials in ~/.m2/settings.xml file:
     <username>myJiraLogin</username>
     <password>myJiraPassword</password>
   </server>
-```
-
-Of course don't forget to indicate the URL of your project's jira:
-
-```xml
-  <issueManagement>
-   <system>jira</system>
-   <url>http://jira.xwiki.org/jira/browse/LDAP</url>
- </issueManagement>
 ```
 
 # Release of a new parent pom
