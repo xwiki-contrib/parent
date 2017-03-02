@@ -102,5 +102,6 @@ You will also need to indicate your credentials in ~/.m2/settings.xml file:
 The Maven Release Plugin cannot be used for these pom.xml because one of the goal is to make sure release setup is a clean slate when you use them as parent.
 
 * Go to the right branch
-* ./release.sh
-* Go to http://nexus.xwiki.org, close and release the corresponding staging repository
+* update the version in the README.md
+* execute ./release.sh
+
