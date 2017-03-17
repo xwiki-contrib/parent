@@ -74,7 +74,7 @@ You can set the issue management system and URL in the properties as follow:
 
 ```xml
     <xwiki.issueManagement.system>jira</xwiki.issueManagement.system>
-    <xwiki.issueManagement.url>https://jira.xwiki.org/jira/browse/LDAP</xwiki.issueManagement.url>
+    <xwiki.issueManagement.url>https://jira.xwiki.org/browse/LDAP</xwiki.issueManagement.url>
 ```
 
 ## Enable automatic Jira release
