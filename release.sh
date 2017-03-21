@@ -86,10 +86,22 @@ function deploy_all() {
 # Check version to release
 if [[ -z $VERSION ]]
 then
+  cd parent-commons
+  current_version=$(mvn -q -Dexec.executable="echo" -Dexec.args='${project.version}' --non-recursive exec:exec)
+  cd ..
+  n=${current_version##*[!0-9]}
+  p=${current_version%%$n}
+  next_version=$p$((n+1))
+
   echo -e "Which version are you releasing?"
-  read -e -p "> " VERSION
+  read -e -p "> ($next_version) " tmp
+  if [[ $tmp ]]
+  then
+    next_version=$tmp
+  fi
+    export VERSION=$next_version
+
   echo -n -e "\033[0m"
-  export VERSION=$VERSION
 fi
 
 set -e
