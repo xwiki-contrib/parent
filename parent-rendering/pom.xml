@@ -47,8 +47,9 @@
     <xwiki.release.jira.skip>true</xwiki.release.jira.skip>
     <xwiki.release.jira.settingsKey>jira.xwiki.org</xwiki.release.jira.settingsKey>
     <xwiki.release.jira.scope>session</xwiki.release.jira.scope>
-    <xwiki.issueManagement.system/>
-    <xwiki.issueManagement.url/>
+    <xwiki.issueManagement.jira.id/>
+    <xwiki.issueManagement.system>jira</xwiki.issueManagement.system>
+    <xwiki.issueManagement.url>http://jira.xwiki.org/browse/${xwiki.issueManagement.jira.id}</xwiki.issueManagement.url>
   </properties>
 
   <build>
@@ -185,8 +186,7 @@
       <id>release-parent</id>
       <properties>
         <xwiki.release.jira.skip>false</xwiki.release.jira.skip>
-        <xwiki.issueManagement.system>jira</xwiki.issueManagement.system>
-        <xwiki.issueManagement.url>https://jira.xwiki.org/browse/CPARENT</xwiki.issueManagement.url>
+        <xwiki.issueManagement.jira.id>CPARENT</xwiki.issueManagement.jira.id>
       </properties>
       <build>
         <plugins>
