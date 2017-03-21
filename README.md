@@ -69,12 +69,17 @@ By default the maven artifact are going to be automatically released on http://n
 
 ## Issue Management
 
-You can set the issue management system and URL in the properties as follow:
+You can set the http://jira.xwiki.org based issue management system and URL in the properties as follow:
 
+```xml
+    <xwiki.issueManagement.jira.id>LDAP</xwiki.issueManagement.jira.id>
+```
+
+If your project is not hosted on http://jira.xwiki.org you can also do the following:
 
 ```xml
     <xwiki.issueManagement.system>jira</xwiki.issueManagement.system>
-    <xwiki.issueManagement.url>https://jira.xwiki.org/browse/LDAP</xwiki.issueManagement.url>
+    <xwiki.issueManagement.url>http://jira.mydomain.com/browse/MYID</xwiki.issueManagement.url>
 ```
 
 ## Enable automatic Jira release
