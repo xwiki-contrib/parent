@@ -34,9 +34,9 @@ function set_version_all() {
   echo -e "\033[0;32m    Set version ${VERSION} in all pom files\033[0m"
   echo              "*****************************"
 
-  #set_version parent-commons
-  #set_version parent-rendering
-  #set_version parent-platform
+  set_version parent-commons
+  set_version parent-rendering
+  set_version parent-platform
 
   update_documentation
 }
