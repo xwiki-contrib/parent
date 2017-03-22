@@ -116,3 +116,5 @@ deploy_all
 
 echo -e "\033[0;32m Push changes and tag\033[0"
 git push --tags
+git push
+
