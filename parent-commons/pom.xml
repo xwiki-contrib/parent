@@ -100,7 +100,7 @@
         <extensions>true</extensions>
         <configuration>
           <serverId>xwiki-staging</serverId>
-          <nexusUrl>https://nexus.xwiki.org/nexus/</nexusUrl>
+          <nexusUrl>http://nexus.xwiki.org/nexus/</nexusUrl>
           <autoReleaseAfterClose>${xwiki.nexus.autoReleaseAfterClose}</autoReleaseAfterClose>
           <skipStaging>${xwiki.nexus.skipStaging}</skipStaging>
         </configuration>
