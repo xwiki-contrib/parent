@@ -71,16 +71,6 @@
             <scope>${xwiki.release.jira.scope}</scope>
           </configuration>
         </plugin>
-        <plugin>
-          <groupId>net.sigmalab.maven.plugins</groupId>
-          <artifactId>jira-maven-plugin</artifactId>
-          <version>0.5</version>
-          <configuration>
-            <skip>${xwiki.release.jira.skip}</skip>
-            <settingsKey>${xwiki.release.jira.settingsKey}</settingsKey>
-            <scope>${xwiki.release.jira.scope}</scope>
-          </configuration>
-        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
