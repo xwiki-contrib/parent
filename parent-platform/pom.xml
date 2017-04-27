@@ -56,30 +56,6 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-enforcer-plugin</artifactId>
-          <dependencies>
-            <dependency>
-              <groupId>org.xwiki.commons</groupId>
-              <artifactId>xwiki-commons-tool-enforcer-dependencies</artifactId>
-              <version>${commons.version}</version>
-            </dependency>
-          </dependencies>
-          <executions>
-            <execution>
-              <id>enforce-valid-poms</id>
-              <goals>
-                <goal>enforce</goal>
-              </goals>
-              <configuration>
-                <!-- Workaround regression introduced in XCOMMONS-895. See XCOMMONS-979. -->
-                <!-- TODO: use xwiki-commons-tool-enforcer-dependencies 7.4.4 instead when released -->
-                <skip>true</skip>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
           <groupId>net.sigmalab.maven.plugins</groupId>
           <artifactId>jira-maven-plugin</artifactId>
           <version>0.5</version>
