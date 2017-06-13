@@ -1,6 +1,6 @@
 Provide various parent pom.xml for contrib extensions.
 
-Extensions are automatically release on http://nexus.xwiki.org if your user have the release right.
+Extensions are automatically release on http://nexus.xwiki.org and http://jira.xwiki.org if your user have the proper rights.
 
 # Example
 
