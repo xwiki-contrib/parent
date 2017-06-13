@@ -38,6 +38,26 @@ For extensions having xwiki-commons dependencies only:
 
 Version is \<branch>-\<buildnumber> as in 6.4-3 which is the 3rd version of the parent pom to use for contrib extension which support XWiki 6.4 version and more.
 
+You can then use ${commons.version}, ${rendering.version} or ${platform.version} depending on where you dependency come from as in:
+
+```xml
+    <dependency>
+      <groupId>org.xwiki.commons</groupId>
+      <artifactId>xwiki-commons-component-api</artifactId>
+      <version>${commons.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.xwiki.rendering</groupId>
+      <artifactId>xwiki-rendering-api</artifactId>
+      <version>${rendering.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.xwiki.platform</groupId>
+      <artifactId>xwiki-platform-oldcore</artifactId>
+      <version>${platform.version}</version>
+    </dependency>
+```
+
 # Properties
 
 It's possible to customize a bit the behavior of the parent pom using some properties.
