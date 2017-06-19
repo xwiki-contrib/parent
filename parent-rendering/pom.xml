@@ -65,6 +65,14 @@
             <scope>${xwiki.release.jira.scope}</scope>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <!-- Avoid surprises. If a module needs annotation processing it can enabled it easily -->
+            <proc>none</proc>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
