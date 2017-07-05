@@ -122,6 +122,20 @@ You will also need to indicate your credentials in `~/.m2/settings.xml` file:
   </server>
 ```
 
+## Test coverage
+
+You can indicate the minimum test coverage you want to pass the build using the property `<xwiki.jacoco.instructionRatio>`
+
+Here is an example which requiring that at least 50% of your code is executed during tests: 
+
+```xml
+    <xwiki.jacoco.instructionRatio>0.50</xwiki.jacoco.instructionRatio>
+```
+
+If it's not you will see a message like the following:
+
+> [WARNING] Rule violated for bundle my-module: instructions covered ratio is 0.40, but expected minimum is 0.50
+
 # Release of a new parent pom
 
 The Maven Release Plugin cannot be used for these pom.xml because one of the goal is to make sure release setup is a clean slate when you use them as parent.
