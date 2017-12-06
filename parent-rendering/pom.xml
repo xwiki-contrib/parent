@@ -25,7 +25,7 @@
   <parent>
     <groupId>org.xwiki.rendering</groupId>
     <artifactId>xwiki-rendering</artifactId>
-    <version>8.4</version>
+    <version>9.10</version>
   </parent>
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>parent-rendering</artifactId>
@@ -159,6 +159,8 @@
       <properties>
         <xwiki.release.jira.skip>false</xwiki.release.jira.skip>
         <xwiki.issueManagement.jira.id>CPARENT</xwiki.issueManagement.jira.id>
+        <!-- Skip the enforcer because some rules need to be fixed in the child projects (e.g. non empty developer) -->
+        <xwiki.enforcer.skip>true</xwiki.enforcer.skip>
       </properties>
       <build>
         <plugins>

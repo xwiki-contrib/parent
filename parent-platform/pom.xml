@@ -25,7 +25,7 @@
   <parent>
     <groupId>org.xwiki.platform</groupId>
     <artifactId>xwiki-platform-core</artifactId>
-    <version>8.4</version>
+    <version>9.10</version>
   </parent>
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>parent-platform</artifactId>
@@ -166,6 +166,8 @@
       <properties>
         <xwiki.release.jira.skip>false</xwiki.release.jira.skip>
         <xwiki.issueManagement.jira.id>CPARENT</xwiki.issueManagement.jira.id>
+        <!-- Skip the enforcer because some rules need to be fixed in the child projects (e.g. non empty developer) -->
+        <xwiki.enforcer.skip>true</xwiki.enforcer.skip>
       </properties>
       <build>
         <plugins>
@@ -205,7 +207,7 @@
   <developers>
     <developer/>
   </developers>
-  
+
   <!-- Make sure the extension don't ends up with xwiki-commons issueManagement -->
   <issueManagement>
     <system>${xwiki.issueManagement.system}</system>
