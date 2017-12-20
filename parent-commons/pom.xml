@@ -25,69 +25,36 @@
   <parent>
     <groupId>org.xwiki.commons</groupId>
     <artifactId>xwiki-commons-pom</artifactId>
-    <version>9.10</version>
+    <version>9.11</version>
   </parent>
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>parent-commons</artifactId>
-  <version>9.10-1</version>
+  <version>9.11-1</version>
   <name>Contrib Extension</name>
   <packaging>pom</packaging>
   <description>Contrib extension which depends on xwiki-commons</description>
 
   <properties>
-    <!-- Enable Nexus plugin by default -->
-    <xwiki.nexus.skipStaging>false</xwiki.nexus.skipStaging>
-    <!-- Enable auto release by default -->
-    <xwiki.nexus.autoReleaseAfterClose>true</xwiki.nexus.autoReleaseAfterClose>
+    <xwiki.nexus.serverId>xwiki-staging</xwiki.nexus.serverId>
+    <xwiki.nexus.nexusUrl>http://nexus.xwiki.org/nexus/</xwiki.nexus.nexusUrl>
 
     <!-- Put clirr back in automatic mode -->
     <xwiki.compatibility.previous.version/>
 
     <!-- Auto release on jira is disabled by default -->
     <xwiki.release.jira.skip>true</xwiki.release.jira.skip>
-    <xwiki.release.jira.settingsKey>jira.xwiki.org</xwiki.release.jira.settingsKey>
-    <xwiki.release.jira.scope>session</xwiki.release.jira.scope>
+
     <xwiki.issueManagement.jira.id/>
     <xwiki.issueManagement.system>jira</xwiki.issueManagement.system>
     <xwiki.issueManagement.url>https://jira.xwiki.org/browse/${xwiki.issueManagement.jira.id}</xwiki.issueManagement.url>
   </properties>
 
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>net.sigmalab.maven.plugins</groupId>
-          <artifactId>jira-maven-plugin</artifactId>
-          <version>0.5</version>
-          <configuration>
-            <skip>${xwiki.release.jira.skip}</skip>
-            <settingsKey>${xwiki.release.jira.settingsKey}</settingsKey>
-            <scope>${xwiki.release.jira.scope}</scope>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-            <!-- Avoid surprises. If a module needs annotation processing it can enabled it easily -->
-            <proc>none</proc>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
     <plugins>
       <!-- Automatically close and release project on Nexus -->
       <plugin>
         <groupId>org.sonatype.plugins</groupId>
         <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.8</version>
-        <extensions>true</extensions>
-        <configuration>
-          <serverId>xwiki-staging</serverId>
-          <nexusUrl>http://nexus.xwiki.org/nexus/</nexusUrl>
-          <autoReleaseAfterClose>${xwiki.nexus.autoReleaseAfterClose}</autoReleaseAfterClose>
-          <skipStaging>${xwiki.nexus.skipStaging}</skipStaging>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
