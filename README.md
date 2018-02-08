@@ -2,7 +2,7 @@ Provide various parent pom.xml for contrib extensions.
 
 Extensions are automatically release on http://nexus.xwiki.org and http://jira.xwiki.org if your user have the proper rights.
 
-# Example
+# Examples
 
 For extensions having xwiki-platform dependencies:
 
@@ -30,6 +30,16 @@ For extensions having xwiki-commons dependencies only:
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>parent-commons</artifactId>
+    <version>10.0</version>
+  </parent>
+```
+
+For custom XWiki distributions:
+
+```xml
+  <parent>
+    <groupId>org.xwiki.contrib</groupId>
+    <artifactId>parent-platform-distribution</artifactId>
     <version>10.0</version>
   </parent>
 ```
