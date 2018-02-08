@@ -37,6 +37,7 @@ function set_version_all() {
   set_version parent-commons
   set_version parent-rendering
   set_version parent-platform
+  set_version parent-platform-distribution
 
   update_documentation
 }
@@ -74,6 +75,7 @@ function deploy_all() {
   deploy_pom parent-commons
   deploy_pom parent-rendering
   deploy_pom parent-platform
+  deploy_pom parent-platform-distribution
 }
 
 function update_documentation() {
