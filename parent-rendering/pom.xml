@@ -25,7 +25,7 @@
   <parent>
     <groupId>org.xwiki.rendering</groupId>
     <artifactId>xwiki-rendering</artifactId>
-    <version>9.11</version>
+    <version>10.0</version>
   </parent>
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>parent-rendering</artifactId>
