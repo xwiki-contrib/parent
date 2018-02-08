@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.xwiki.platform</groupId>
+    <artifactId>xwiki-platform-distribution</artifactId>
+    <version>8.4</version>
+  </parent>
+  <groupId>org.xwiki.contrib</groupId>
+  <artifactId>parent-platform-distribution</artifactId>
+  <version>8.4-8</version>
+  <name>Contrib Extension</name>
+  <packaging>pom</packaging>
+  <description>Contrib extension which depends on xwiki-platform-distribution</description>
+
+  <properties>
+    <!-- Enable Nexus plugin by default -->
+    <xwiki.nexus.skipStaging>false</xwiki.nexus.skipStaging>
+    <!-- Enable auto release by default -->
+    <xwiki.nexus.autoReleaseAfterClose>true</xwiki.nexus.autoReleaseAfterClose>
+
+    <!-- Put clirr back in automatic mode -->
+    <xwiki.compatibility.previous.version/>
+
+    <!-- Auto release on jira is disabled by default -->
+    <xwiki.release.jira.skip>true</xwiki.release.jira.skip>
+    <xwiki.release.jira.settingsKey>jira.xwiki.org</xwiki.release.jira.settingsKey>
+    <xwiki.release.jira.scope>session</xwiki.release.jira.scope>
+    <xwiki.issueManagement.jira.id/>
+    <xwiki.issueManagement.system>jira</xwiki.issueManagement.system>
+    <xwiki.issueManagement.url>https://jira.xwiki.org/browse/${xwiki.issueManagement.jira.id}</xwiki.issueManagement.url>
+  </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>net.sigmalab.maven.plugins</groupId>
+          <artifactId>jira-maven-plugin</artifactId>
+          <version>0.5</version>
+          <configuration>
+            <skip>${xwiki.release.jira.skip}</skip>
+            <settingsKey>${xwiki.release.jira.settingsKey}</settingsKey>
+            <scope>${xwiki.release.jira.scope}</scope>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <!-- Avoid surprises. If a module needs annotation processing it can enabled it easily -->
+            <proc>none</proc>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <!-- Automatically close and release project on Nexus -->
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.8</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>xwiki-staging</serverId>
+          <nexusUrl>http://nexus.xwiki.org/nexus/</nexusUrl>
+          <autoReleaseAfterClose>${xwiki.nexus.autoReleaseAfterClose}</autoReleaseAfterClose>
+          <skipStaging>${xwiki.nexus.skipStaging}</skipStaging>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <!-- Verify that all org.xwiki.commons dependencies have a version specified either as:
+               - ${commons.version}
+               - a value not starting with $ (we want to allow supporting ranges)
+               Also verifies that all org.xwiki.rendering dependencies have a version specified either as:
+               - ${rendering.version}
+               - a value not starting with $ (we want to allow supporting ranges)
+               Also verifies that all org.xwiki.platform dependencies have a version specified either as:
+               - ${platform.version}
+               - a value not starting with $ (we want to allow supporting ranges)
+          -->
+          <execution>
+            <id>check-dependency-version</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <validateDependencyVersion implementation="org.xwiki.tool.enforcer.ValidateDependencyVersion">
+                  <versionCheck>
+                    <groupIdPrefix>org.xwiki.commons</groupIdPrefix>
+                    <allowedVersionRegex>\$\{commons.version\}|[^$].*</allowedVersionRegex>
+                  </versionCheck>
+                  <versionCheck>
+                    <groupIdPrefix>org.xwiki.rendering</groupIdPrefix>
+                    <allowedVersionRegex>\$\{rendering.version\}|[^$].*</allowedVersionRegex>
+                  </versionCheck>
+                  <versionCheck>
+                    <groupIdPrefix>org.xwiki.platform</groupIdPrefix>
+                    <allowedVersionRegex>\$\{platform.version\}|[^$].*</allowedVersionRegex>
+                  </versionCheck>
+                </validateDependencyVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <!-- Profile enabled during release -->
+    <profile>
+      <id>release</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <!-- Automatically release on Jira (if the version already exist and if the plugin is not skipped) -->
+          <plugin>
+            <groupId>net.sigmalab.maven.plugins</groupId>
+            <artifactId>jira-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>install</phase>
+                <goals>
+                  <goal>create-new-jira-version</goal>
+                  <goal>release-jira-version</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>release-parent</id>
+      <properties>
+        <xwiki.release.jira.skip>false</xwiki.release.jira.skip>
+        <xwiki.issueManagement.jira.id>CPARENT</xwiki.issueManagement.jira.id>
+      </properties>
+      <build>
+        <plugins>
+          <!-- Automatically release on Jira (if the version already exist and if the plugin is not skipped) -->
+          <plugin>
+            <groupId>net.sigmalab.maven.plugins</groupId>
+            <artifactId>jira-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>deploy</phase>
+                <goals>
+                  <goal>create-new-jira-version</goal>
+                  <goal>release-jira-version</goal>
+                </goals>
+                <configuration>
+                  <versionDescription></versionDescription>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+  <!-- Make sure the extension don't ends up with xwiki-commons url-->
+  <url/>
+
+  <!-- Make sure the extension don't ends up with xwiki-commons scm -->
+  <scm>
+    <connection/>
+    <developerConnection/>
+    <url/>
+  </scm>
+
+  <!-- Make sure the extension don't ends up with xwiki-commons developers -->
+  <developers>
+    <developer/>
+  </developers>
+  
+  <!-- Make sure the extension don't ends up with xwiki-commons issueManagement -->
+  <issueManagement>
+    <system>${xwiki.issueManagement.system}</system>
+    <url>${xwiki.issueManagement.url}</url>
+  </issueManagement>
+
+  <!-- Set a more accurate organization -->
+  <organization>
+    <name>XWiki Contrib</name>
+    <url>http://contrib.xwiki.org/</url>
+  </organization>
+
+  <!-- Standard Maven plugin for contrib extensions -->
+  <distributionManagement>
+    <repository>
+      <id>xwiki-staging</id>
+      <name>XWiki Staging Repository</name>
+      <url>https://nexus.xwiki.org/nexus/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+</project>
