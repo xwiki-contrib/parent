@@ -86,7 +86,7 @@ function tag_all() {
   echo -e "\033[0;32m    Create tag for new version\033[0m"
   echo              "*****************************"
 
-  git tag -m "Tagging ${parent-$VERSION}" parent-${VERSION}
+  git tag -m "Tagging ${currentFolderName}-${VERSION}" ${currentFolderName}-${VERSION}
 }
 
 function deploy_pom() {
