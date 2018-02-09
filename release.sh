@@ -20,6 +20,23 @@
 # 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 # ---------------------------------------------------------------------------
 
+# Collect the modules.
+modules=()
+currentFolderName=${PWD##*/}
+for module in *; do
+  # Skip files and symbolic links.
+  # Use only the folders that starts with '<currentFolderName>-'
+  if [[ -d $module && ! -L $module && $module == $currentFolderName-* ]]; then
+    modules+=("$module")
+  fi
+done
+
+function callForEachModule() {
+  for module in "${modules[@]}"; do
+    $1 "${module}"
+  done
+}
+
 function set_version() {
   cd $1
 
@@ -34,12 +51,26 @@ function set_version_all() {
   echo -e "\033[0;32m    Set version ${VERSION} in all pom files\033[0m"
   echo              "*****************************"
 
-  set_version parent-commons
-  set_version parent-rendering
-  set_version parent-platform
-  set_version parent-platform-distribution
+  callForEachModule set_version
 
   update_documentation
+}
+
+function set_parent_version() {
+  cd $1
+
+  echo -e "\033[0;32m* Set parent version ${PARENT_VERSION} in ${1}\033[0m"
+  mvn versions:update-parent -DgenerateBackupPoms=false -DparentVersion=[$PARENT_VERSION]
+
+  cd ..
+}
+
+function set_parent_version_all() {
+  echo              "*****************************"
+  echo -e "\033[0;32m    Set parent version ${PARENT_VERSION} in all pom files\033[0m"
+  echo              "*****************************"
+
+  callForEachModule set_parent_version
 }
 
 function commit_all() {
@@ -72,10 +103,7 @@ function deploy_all() {
   echo -e "\033[0;32m    Deploy all pom files\033[0m"
   echo              "*****************************"
 
-  deploy_pom parent-commons
-  deploy_pom parent-rendering
-  deploy_pom parent-platform
-  deploy_pom parent-platform-distribution
+  callForEachModule deploy_pom
 }
 
 function update_documentation() {
@@ -89,7 +117,7 @@ function update_documentation() {
 # Check version to release
 if [[ -z $VERSION ]]
 then
-  cd parent-commons
+  cd "${modules[0]}"
   current_version=$(mvn -q -Dexec.executable="echo" -Dexec.args='${project.version}' --non-recursive exec:exec)
   cd ..
   n=${current_version##*[!0-9]}
@@ -109,9 +137,29 @@ then
   echo -n -e "\033[0m"
 fi
 
+# Check parent version to update
+if [[ -z $PARENT_VERSION ]]
+then
+  cd "${modules[0]}"
+  parent_version=$(mvn -q -Dexec.executable="echo" -Dexec.args='${project.parent.version}' --non-recursive exec:exec)
+  cd ..
+
+  echo -e "Do you want to change the parent version?"
+  read -e -p "> ($parent_version) " tmp
+  if [[ $tmp ]]
+  then
+    export PARENT_VERSION=$tmp
+  fi
+
+  echo -n -e "\033[0m"
+fi
+
 set -e
 
 set_version_all
+if [[ ! -z $PARENT_VERSION ]]; then
+  set_parent_version_all
+fi
 commit_all
 tag_all
 deploy_all
@@ -119,4 +167,3 @@ deploy_all
 echo -e "\033[0;32m Push changes and tag\033[0"
 git push --tags
 git push
-
