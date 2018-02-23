@@ -37,6 +37,8 @@
   <properties>
     <xwiki.nexus.serverId>xwiki-staging</xwiki.nexus.serverId>
     <xwiki.nexus.nexusUrl>http://nexus.xwiki.org/nexus/</xwiki.nexus.nexusUrl>
+    <!-- Enabled back Nexus statging disabled in xwiki-platform -->
+    <xwiki.nexus.skipLocalStaging>false</xwiki.nexus.skipLocalStaging>
 
     <!-- Put clirr back in automatic mode -->
     <xwiki.compatibility.previous.version/>
