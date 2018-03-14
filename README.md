@@ -2,6 +2,16 @@ Provide various parent pom.xml for contrib extensions.
 
 Extensions are automatically release on http://nexus.xwiki.org and http://jira.xwiki.org if your user have the proper rights.
 
+# Missing a specific version of those pom for your need ?
+
+There is two possibilities:
+* in most cases it's enough to use the closest lower version (8.4-8 for example) and set the following property <commons.version>8.4.2</commons.version>
+* in more complex use case (like parent-platform-distribution) you will need teh exact same version, don't hesitate to create a TASK issue on https://jira.xwiki.org/browse/CPARENT
+
+# Bugs
+
+Most released versions have a corresponding branch (usually master for latest versions) so you can create a pull request there. If you are not sure how to fix it create an issue on https://jira.xwiki.org/browse/CPARENT.
+
 # Examples
 
 For extensions having xwiki-platform dependencies:
