@@ -25,11 +25,11 @@
   <parent>
     <groupId>org.xwiki.rendering</groupId>
     <artifactId>xwiki-rendering</artifactId>
-    <version>10.0</version>
+    <version>10.2</version>
   </parent>
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>parent-rendering</artifactId>
-  <version>10.0-1</version>
+  <version>10.2</version>
   <name>Contrib Extension</name>
   <packaging>pom</packaging>
   <description>Contrib extension which depends on xwiki-rendering</description>
