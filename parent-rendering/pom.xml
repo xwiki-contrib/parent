@@ -184,9 +184,6 @@
     </profile>
   </profiles>
 
-  <!-- Make sure the extension don't ends up with xwiki-commons url-->
-  <url/>
-
   <!-- Make sure the extension don't ends up with xwiki-commons scm -->
   <scm>
     <connection/>
