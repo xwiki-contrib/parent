@@ -10,7 +10,7 @@ For extensions having xwiki-platform dependencies:
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>parent-platform</artifactId>
-    <version>5.4</version>
+    <version>5.4-1</version>
   </parent>
 ```
 
@@ -20,7 +20,7 @@ For extensions having xwiki-rendering and xwiki-commons dependencies:
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>parent-rendering</artifactId>
-    <version>5.4</version>
+    <version>5.4-1</version>
   </parent>
 ```
 
@@ -30,7 +30,7 @@ For extensions having xwiki-commons dependencies only:
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>parent-commons</artifactId>
-    <version>5.4</version>
+    <version>5.4-1</version>
   </parent>
 ```
 
