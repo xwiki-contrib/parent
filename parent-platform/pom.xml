@@ -132,6 +132,27 @@
       <properties>
         <xwiki.issueManagement.jira.id>CPARENT</xwiki.issueManagement.jira.id>
       </properties>
+      <build>
+        <plugins>
+          <!-- Automatically release on Jira (if the version already exist and if the plugin is not skipped) -->
+          <plugin>
+            <groupId>net.sigmalab.maven.plugins</groupId>
+            <artifactId>jira-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>deploy</phase>
+                <goals>
+                  <goal>create-new-jira-version</goal>
+                  <goal>release-jira-version</goal>
+                </goals>
+                <configuration>
+                  <versionDescription></versionDescription>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
   </profiles>
 
