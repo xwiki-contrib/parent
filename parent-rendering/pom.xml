@@ -43,6 +43,10 @@
     <!-- Put clirr back in automatic mode -->
     <xwiki.clirr.previous.version/>
 
+    <!-- Auto release on jira is disabled by default -->
+    <xwiki.release.jira.skip>true</xwiki.release.jira.skip>
+    <xwiki.release.jira.settingsKey>jira.xwiki.org</xwiki.release.jira.settingsKey>
+    <xwiki.release.jira.scope>session</xwiki.release.jira.scope>
     <xwiki.issueManagement.jira.id/>
     <xwiki.issueManagement.system>jira</xwiki.issueManagement.system>
     <xwiki.issueManagement.url>http://jira.xwiki.org/browse/${xwiki.issueManagement.jira.id}</xwiki.issueManagement.url>
