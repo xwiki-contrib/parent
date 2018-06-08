@@ -96,7 +96,7 @@ You can control the version to use as previous version with the property `xwiki.
 
 ## Nexus plugin
 
-By default the maven artifact are going to be automatically released on http://nexus.xwiki.org. If you want to keep it in too pass (you want to test the deployed artifact before the release or the doing the Maven release is not the same as the one validating the release) you can control the behavior with the properties `<xwiki.nexus.skipStaging>` and `<xwiki.nexus.autoReleaseAfterClose>` as in:
+By default the maven artifact are going to be automatically released on http://nexus.xwiki.org. If you want to keep it in two passes (you want to test the deployed artifact before the release or the doing the Maven release is not the same as the one validating the release) you can control the behavior with the properties `<xwiki.nexus.skipStaging>` and `<xwiki.nexus.autoReleaseAfterClose>` as in:
 
 ```xml
   <properties>
