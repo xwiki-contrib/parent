@@ -102,26 +102,6 @@ If your project is not hosted on http://jira.xwiki.org you can also do the follo
     <xwiki.issueManagement.url>http://jira.mydomain.com/browse/MYID</xwiki.issueManagement.url>
 ```
 
-## Enable automatic Jira release
-
-If you want to automatically create (if it does not already exist) and release the version on Jira when you release on Maven you can enable it using the Maven property `xwiki.release.jira.skip` as in:
-
-```xml
-  <properties>
-    <xwiki.release.jira.skip>false</xwiki.release.jira.skip>
-  </properties>
-```
-
-You will also need to indicate your credentials in `~/.m2/settings.xml` file:
-
-```xml
-  <server>
-    <id>jira.xwiki.org</id>
-    <username>myJiraLogin</username>
-    <password>myJiraPassword</password>
-  </server>
-```
-
 ## Test coverage
 
 You can indicate the minimum test coverage you want to pass the build using the property `<xwiki.jacoco.instructionRatio>`
