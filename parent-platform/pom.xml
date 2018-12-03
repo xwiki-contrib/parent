@@ -25,11 +25,11 @@
   <parent>
     <groupId>org.xwiki.platform</groupId>
     <artifactId>xwiki-platform-core</artifactId>
-    <version>9.11.8</version>
+    <version>10.10</version>
   </parent>
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>parent-platform</artifactId>
-  <version>9.11.8</version>
+  <version>10.10</version>
   <name>Contrib Extension</name>
   <packaging>pom</packaging>
   <description>Contrib extension which depends on xwiki-platform</description>
@@ -53,21 +53,6 @@
 
   <build>
     <plugins>
-      <!-- TODO: Remove the following plugin configuration when upgrading the parent version (10.3+). -->
-      <!-- xwiki-commons-pom 10.2 has been released with the wrong dependency version for xwiki-commons-tool-spoon
-        (10.1-SNAPSHOT instead of 10.2). We need to fix this as otherwise it fails the build. -->
-      <plugin>
-        <groupId>fr.inria.gforge.spoon</groupId>
-        <artifactId>spoon-maven-plugin</artifactId>
-        <dependencies>
-          <!-- Contains custom Spoon processors -->
-          <dependency>
-            <groupId>org.xwiki.commons</groupId>
-            <artifactId>xwiki-commons-tool-spoon</artifactId>
-            <version>${commons.version}</version>
-          </dependency>
-        </dependencies>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
