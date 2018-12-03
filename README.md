@@ -161,4 +161,5 @@ If it's not you will see a message like the following:
 The Maven Release Plugin cannot be used for these `pom.xml` because one of the goal is to make sure release setup is a clean slate when you use them as parent.
 
 * Go to the right branch. Use `master` when releasing a non-LTS version.
+* Note: you don't need to edit the versions since the new version will asked during the release script execution and the various `pom.xml`files will be updated automatically.
 * execute `./release.sh`
