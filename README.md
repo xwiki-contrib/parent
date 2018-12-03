@@ -158,7 +158,7 @@ If it's not you will see a message like the following:
 
 # Release of a new parent pom
 
-The Maven Release Plugin cannot be used for these pom.xml because one of the goal is to make sure release setup is a clean slate when you use them as parent.
+The Maven Release Plugin cannot be used for these `pom.xml` because one of the goal is to make sure release setup is a clean slate when you use them as parent.
 
-* Go to the right branch
+* Go to the right branch. Use `master` when releasing a non-LTS version.
 * execute `./release.sh`
