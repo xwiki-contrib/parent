@@ -20,6 +20,9 @@
 # 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 # ---------------------------------------------------------------------------
 
+# Make sure we're up to date with what's on the server
+git pull --rebase
+
 # Collect the modules.
 modules=()
 currentFolderName=${PWD##*/}
