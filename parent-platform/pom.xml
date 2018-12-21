@@ -25,11 +25,11 @@
   <parent>
     <groupId>org.xwiki.platform</groupId>
     <artifactId>xwiki-platform-core</artifactId>
-    <version>10.8.2</version>
+    <version>10.8.3</version>
   </parent>
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>parent-platform</artifactId>
-  <version>10.8.2</version>
+  <version>10.8.3</version>
   <name>Contrib Extension</name>
   <packaging>pom</packaging>
   <description>Contrib extension which depends on xwiki-platform</description>
