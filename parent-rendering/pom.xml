@@ -123,6 +123,9 @@
         <xwiki.issueManagement.jira.id>CPARENT</xwiki.issueManagement.jira.id>
         <!-- Skip the enforcer because some rules need to be fixed in the child projects (e.g. non empty developer) -->
         <xwiki.enforcer.skip>true</xwiki.enforcer.skip>
+        <!-- TODO: Remove the following 2 lines when upgrading parent version to 11.0RC1+ -->
+        <xwiki.enforcer.no-legacy-dependencies.skip>true</xwiki.enforcer.no-legacy-dependencies.skip>
+        <xwiki.enforcer.valid-poms.skip>true</xwiki.enforcer.valid-poms.skip>
       </properties>
       <build>
         <plugins>
