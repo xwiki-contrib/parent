@@ -96,7 +96,7 @@ function deploy_pom() {
   cd $1
 
   echo -e "\033[0;32m* Deploy ${1} ${VERSION}\033[0m"
-  mvn deploy -DperformRelease=true -Prelease-parent
+  mvn clean deploy -DperformRelease=true -Prelease-parent
 
   cd ..
 }
