@@ -49,6 +49,9 @@
     <xwiki.issueManagement.jira.id/>
     <xwiki.issueManagement.system>jira</xwiki.issueManagement.system>
     <xwiki.issueManagement.url>https://jira.xwiki.org/browse/${xwiki.issueManagement.jira.id}</xwiki.issueManagement.url>
+
+    <!-- The Spoon version inherited from this XWiki version has a broken dependency -->
+    <spoon.version>8.1.0</spoon.version>
   </properties>
 
   <build>
