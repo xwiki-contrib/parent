@@ -36,6 +36,8 @@
 
   <properties>
     <!-- Enable Nexus plugin by default -->
+    <xwiki.nexus.keepStagingRepositoryOnCloseRuleFailure>true</xwiki.nexus.keepStagingRepositoryOnCloseRuleFailure>
+    <xwiki.nexus.skipLocalStaging>false</xwiki.nexus.skipLocalStaging>
     <xwiki.nexus.skipStaging>false</xwiki.nexus.skipStaging>
     <!-- Enable auto release by default -->
     <xwiki.nexus.autoReleaseAfterClose>true</xwiki.nexus.autoReleaseAfterClose>
@@ -141,7 +143,10 @@
               <serverId>xwiki-staging</serverId>
               <nexusUrl>http://nexus.xwiki.org/nexus/</nexusUrl>
               <autoReleaseAfterClose>${xwiki.nexus.autoReleaseAfterClose}</autoReleaseAfterClose>
+              <keepStagingRepositoryOnCloseRuleFailure>${xwiki.nexus.keepStagingRepositoryOnCloseRuleFailure}</keepStagingRepositoryOnCloseRuleFailure>
+              <skipLocalStaging>${xwiki.nexus.skipLocalStaging}</skipLocalStaging>
               <skipStaging>${xwiki.nexus.skipStaging}</skipStaging>
+              <stagingProgressTimeoutMinutes>60</stagingProgressTimeoutMinutes>
             </configuration>
           </plugin>
           <!-- Automatically release on Jira (if the version already exist and if the plugin is not skipped) -->
@@ -169,6 +174,22 @@
       </properties>
       <build>
         <plugins>
+          <!-- Automatically close and release project on Nexus -->
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.13</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>xwiki-staging</serverId>
+              <nexusUrl>http://nexus.xwiki.org/nexus/</nexusUrl>
+              <autoReleaseAfterClose>${xwiki.nexus.autoReleaseAfterClose}</autoReleaseAfterClose>
+              <keepStagingRepositoryOnCloseRuleFailure>${xwiki.nexus.keepStagingRepositoryOnCloseRuleFailure}</keepStagingRepositoryOnCloseRuleFailure>
+              <skipLocalStaging>${xwiki.nexus.skipLocalStaging}</skipLocalStaging>
+              <skipStaging>${xwiki.nexus.skipStaging}</skipStaging>
+              <stagingProgressTimeoutMinutes>60</stagingProgressTimeoutMinutes>
+            </configuration>
+          </plugin>
           <!-- Automatically release on Jira (if the version already exist and if the plugin is not skipped) -->
           <plugin>
             <groupId>net.sigmalab.maven.plugins</groupId>
