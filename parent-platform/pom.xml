@@ -29,7 +29,7 @@
   </parent>
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>parent-platform</artifactId>
-  <version>8.4-11</version>
+  <version>8.4-12</version>
   <name>Contrib Extension</name>
   <packaging>pom</packaging>
   <description>Contrib extension which depends on xwiki-platform</description>
@@ -76,19 +76,6 @@
       </plugins>
     </pluginManagement>
     <plugins>
-      <!-- Automatically close and release project on Nexus -->
-      <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.8</version>
-        <extensions>true</extensions>
-        <configuration>
-          <serverId>xwiki-staging</serverId>
-          <nexusUrl>http://nexus.xwiki.org/nexus/</nexusUrl>
-          <autoReleaseAfterClose>${xwiki.nexus.autoReleaseAfterClose}</autoReleaseAfterClose>
-          <skipStaging>${xwiki.nexus.skipStaging}</skipStaging>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
@@ -144,6 +131,19 @@
       </activation>
       <build>
         <plugins>
+          <!-- Automatically close and release project on Nexus -->
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.13</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>xwiki-staging</serverId>
+              <nexusUrl>http://nexus.xwiki.org/nexus/</nexusUrl>
+              <autoReleaseAfterClose>${xwiki.nexus.autoReleaseAfterClose}</autoReleaseAfterClose>
+              <skipStaging>${xwiki.nexus.skipStaging}</skipStaging>
+            </configuration>
+          </plugin>
           <!-- Automatically release on Jira (if the version already exist and if the plugin is not skipped) -->
           <plugin>
             <groupId>net.sigmalab.maven.plugins</groupId>
