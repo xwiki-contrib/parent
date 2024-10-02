@@ -58,7 +58,16 @@ For custom XWiki distributions:
 
 # Versions
 
-Version is `<branch>[-<buildnumber>]` as in `6.4-3` which is the 3rd update of the parent pom to use for contrib extension which support XWiki 6.4 version and more.
+Version is `<branch>[-<buildnumber>]` as in:
+
+* `6.4-3` which is the 3rd update of the parent pom to use for contrib extension which support XWiki ``6.4`` version and more
+* `14.10.15-2` which is the 2nd update of the parent pom to use for contrib extension which support XWiki ``14.10.15`` version and more
+
+Basically you have to take the minimum XWiki version you want to support, say ``14.10.15``, and:
+
+* first time you release a parent for that version you use exactly that version, i.e. ``14.10.15``
+* the second time you add the ``-1`` suffix, i.e. ``14.10.15-1``
+* from then on you increase the number after the dash, i.e ``14.10.15-2``
 
 You can then use `${commons.version}`, `${rendering.version}` or `${platform.version}` depending on where you dependency come from as in:
 
