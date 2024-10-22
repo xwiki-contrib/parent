@@ -47,6 +47,9 @@
     <xwiki.issueManagement.jira.id/>
     <xwiki.issueManagement.system>jira</xwiki.issueManagement.system>
     <xwiki.issueManagement.url>https://jira.xwiki.org/browse/${xwiki.issueManagement.jira.id}</xwiki.issueManagement.url>
+
+    <!-- Use a version compatible with Java 17-->
+    <spoon.version>10.4.2</spoon.version>
   </properties>
 
   <build>
@@ -78,6 +81,37 @@
         </executions>
       </plugin>
     </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <configuration>
+            <!-- The Java version is hardcoded to "8" in 14.10, which is wrong since it's expected to be 11 -->
+            <release>${xwiki.java.version}</release>
+          </configuration>
+        </plugin>
+        <!-- Use a version compatible with Java 17-->
+        <plugin>
+          <groupId>fr.inria.gforge.spoon</groupId>
+          <artifactId>spoon-maven-plugin</artifactId>
+          <version>3.8.0</version>
+          <configuration>
+            <!-- The version is not indicated in 14.10, and the default is not right -->
+            <compliance>${xwiki.java.version}</compliance>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <configuration>
+            <!-- Add add-opens directives to support tests using reflection and xwiki runtime code (or its deps)
+                 requiring some features forbidden by default with Java 17+ -->
+            <argLine>@{argLine} -Xmx1024m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${project.build.directory} --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.util.concurrent=ALL-UNNAMED</argLine>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
 
   <profiles>
