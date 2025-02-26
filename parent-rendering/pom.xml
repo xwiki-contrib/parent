@@ -29,7 +29,7 @@
   </parent>
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>parent-rendering</artifactId>
-  <version>16.10.3</version>
+  <version>16.10.2</version>
   <name>Contrib Extension</name>
   <packaging>pom</packaging>
   <description>Contrib extension which depends on xwiki-rendering</description>
