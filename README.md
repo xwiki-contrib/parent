@@ -22,7 +22,7 @@ For extensions having xwiki-platform dependencies:
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>parent-platform</artifactId>
-    <version>16.10.9-1</version>
+    <version>16.10.8</version>
   </parent>
 ```
 
@@ -32,7 +32,7 @@ For extensions having xwiki-rendering and xwiki-commons dependencies:
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>parent-rendering</artifactId>
-    <version>16.10.9-1</version>
+    <version>16.10.8</version>
   </parent>
 ```
 
@@ -42,7 +42,7 @@ For extensions having xwiki-commons dependencies only:
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>parent-commons</artifactId>
-    <version>16.10.9-1</version>
+    <version>16.10.8</version>
   </parent>
 ```
 
@@ -52,7 +52,7 @@ For custom XWiki distributions:
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>parent-platform-distribution</artifactId>
-    <version>16.10.9-1</version>
+    <version>16.10.8</version>
   </parent>
 ```
 
