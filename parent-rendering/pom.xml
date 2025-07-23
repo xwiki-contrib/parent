@@ -99,23 +99,26 @@
       </activation>
       <build>
         <plugins>
-          <!-- Automatically release on Jira (if the version already exist and if the plugin is not skipped) -->
           <plugin>
-            <groupId>net.sigmalab.maven.plugins</groupId>
-            <artifactId>jira-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <phase>install</phase>
-                <goals>
-                  <goal>create-new-jira-version</goal>
-                  <goal>release-jira-version</goal>
-                </goals>
-              </execution>
-            </executions>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.7.0</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>${xwiki.nexus.serverId}</serverId>
+              <nexusUrl>${xwiki.nexus.nexusUrl}</nexusUrl>
+              <autoReleaseAfterClose>${xwiki.nexus.autoReleaseAfterClose}</autoReleaseAfterClose>
+              <keepStagingRepositoryOnCloseRuleFailure>${xwiki.nexus.keepStagingRepositoryOnCloseRuleFailure}
+              </keepStagingRepositoryOnCloseRuleFailure>
+              <skipLocalStaging>${xwiki.nexus.skipLocalStaging}</skipLocalStaging>
+              <skipStaging>${xwiki.nexus.skipStaging}</skipStaging>
+              <stagingProgressTimeoutMinutes>60</stagingProgressTimeoutMinutes>
+            </configuration>
           </plugin>
         </plugins>
       </build>
     </profile>
+    <!-- Special profile for the release of the Contrib parent itself -->
     <profile>
       <id>release-parent</id>
       <properties>
@@ -124,27 +127,6 @@
         <!-- Skip the enforcer because some rules need to be fixed in the child projects (e.g. non empty developer) -->
         <xwiki.enforcer.skip>true</xwiki.enforcer.skip>
       </properties>
-      <build>
-        <plugins>
-          <!-- Automatically release on Jira (if the version already exist and if the plugin is not skipped) -->
-          <plugin>
-            <groupId>net.sigmalab.maven.plugins</groupId>
-            <artifactId>jira-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <phase>deploy</phase>
-                <goals>
-                  <goal>create-new-jira-version</goal>
-                  <goal>release-jira-version</goal>
-                </goals>
-                <configuration>
-                  <versionDescription></versionDescription>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
   </profiles>
 
