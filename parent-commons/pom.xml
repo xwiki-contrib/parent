@@ -29,7 +29,7 @@
   </parent>
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>parent-commons</artifactId>
-  <version>8.4-12</version>
+  <version>8.4-13</version>
   <name>Contrib Extension</name>
   <packaging>pom</packaging>
   <description>Contrib extension which depends on xwiki-commons</description>
@@ -106,6 +106,70 @@
       </plugin>
     </plugins>
   </build>
+
+  <!--
+    Make sure we don't trigger as transitive dependency things which should not be used directly:
+      * commons-lang:commons-lang
+   -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.xwiki.commons</groupId>
+        <artifactId>xwiki-commons-velocity</artifactId>
+        <version>${commons.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.xwiki.commons</groupId>
+        <artifactId>xwiki-commons-configuration-api</artifactId>
+        <version>${commons.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.xwiki.commons</groupId>
+        <artifactId>xwiki-commons-properties</artifactId>
+        <version>${commons.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.xwiki.commons</groupId>
+        <artifactId>xwiki-commons-job</artifactId>
+        <version>${commons.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.xwiki.commons</groupId>
+        <artifactId>xwiki-commons-velocity</artifactId>
+        <version>${commons.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <profiles>
     <!-- Profile enabled during release -->
