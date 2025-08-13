@@ -122,21 +122,17 @@
   </build>
 
   <!--
-    Make sure we don't trigger as transitive dependency things which should not be used directly:
+    Things that should not be used through transitive dependencies (or at all, ideally):
       * commons-lang:commons-lang
+
+    We use test scope test in case it's needed by the test framework.
    -->
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.xwiki.commons</groupId>
-        <artifactId>xwiki-commons-velocity</artifactId>
-        <version>${commons.version}</version>
-        <exclusions>
-          <exclusion>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-          </exclusion>
-        </exclusions>
+        <groupId>commons-lang</groupId>
+        <artifactId>commons-lang</artifactId>
+        <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.xwiki.commons</groupId>
