@@ -80,6 +80,22 @@
     </plugins>
   </build>
 
+  <!--
+    Things that should not be used through transitive dependencies (or at all, ideally):
+      * commons-lang:commons-lang
+
+    We use test scope test in case it's needed by the test framework.
+   -->
+   <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>commons-lang</groupId>
+        <artifactId>commons-lang</artifactId>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <profiles>
     <!-- Profile enabled during release -->
     <profile>
