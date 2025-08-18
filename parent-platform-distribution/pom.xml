@@ -25,7 +25,8 @@
   <parent>
     <groupId>org.xwiki.platform</groupId>
     <artifactId>xwiki-platform-distribution</artifactId>
-    <version>12.10</version>
+    <!-- Use 12.10.3+ instead of 12.10 as docker tests needs won't work otherwise -->
+    <version>12.10.3</version>
   </parent>
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>parent-platform-distribution</artifactId>
@@ -52,9 +53,6 @@
 
     <!-- The Spoon version inherited from this XWiki version has a broken dependency -->
     <spoon.version>8.1.0</spoon.version>
-
-    <!-- Make sure to use Testcontainers 1.15.1 to fix a bug in 1.15.0 which is causing most builds to fail -->
-    <testcontainers.version>1.15.1</testcontainers.version>
   </properties>
 
   <build>
@@ -114,46 +112,6 @@
         <groupId>commons-lang</groupId>
         <artifactId>commons-lang</artifactId>
         <scope>test</scope>
-      </dependency>
-      <!-- Use the right verison of Testcontainers -->
-      <dependency>
-        <groupId>org.testcontainers</groupId>
-        <artifactId>selenium</artifactId>
-        <version>${testcontainers.version}</version>
-        <exclusions>
-          <exclusion>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-          </exclusion>
-          <exclusion>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-          </exclusion>
-          <exclusion>
-            <groupId>javax.annotation</groupId>
-            <artifactId>javax.annotation-api</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>org.testcontainers</groupId>
-        <artifactId>mysql</artifactId>
-        <version>${testcontainers.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.testcontainers</groupId>
-        <artifactId>mariadb</artifactId>
-        <version>${testcontainers.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.testcontainers</groupId>
-        <artifactId>postgresql</artifactId>
-        <version>${testcontainers.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.testcontainers</groupId>
-        <artifactId>oracle-xe</artifactId>
-        <version>${testcontainers.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

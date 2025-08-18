@@ -25,7 +25,8 @@
   <parent>
     <groupId>org.xwiki.rendering</groupId>
     <artifactId>xwiki-rendering</artifactId>
-    <version>12.10</version>
+    <!-- Use 12.10.3+ instead of 12.10 as docker tests needs won't work otherwise -->
+    <version>12.10.3</version>
   </parent>
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>parent-rendering</artifactId>
