@@ -127,7 +127,7 @@
           </configuration>
         </plugin>
         <plugin>
-          <groupId>fr.inria.gforge.spoon</groupId>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-failsafe-plugin</artifactId>
           <configuration>
             <systemPropertyVariables>
