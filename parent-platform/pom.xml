@@ -126,6 +126,16 @@
             <argLine>@{argLine} -Xmx1024m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${project.build.directory} --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.util.concurrent=ALL-UNNAMED</argLine>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <configuration>
+            <systemPropertyVariables>
+              <!-- Docker 2.29+ requires at least 1.44 by default -->
+              <api.version>1.44</api.version>
+            </systemPropertyVariables>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
