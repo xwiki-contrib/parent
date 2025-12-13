@@ -26,11 +26,11 @@
     <groupId>org.xwiki.platform</groupId>
     <artifactId>xwiki-platform-distribution</artifactId>
     <!-- Use 12.10.3+ instead of 12.10 as docker tests needs won't work otherwise -->
-    <version>12.10.3</version>
+    <version>12.10.11</version>
   </parent>
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>parent-platform-distribution</artifactId>
-  <version>12.10-7</version>
+  <version>12.10.11</version>
   <name>Contrib Extension</name>
   <packaging>pom</packaging>
   <description>Contrib extension which depends on xwiki-platform-distribution</description>
