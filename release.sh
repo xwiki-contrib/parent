@@ -131,7 +131,7 @@ then
   p=${current_version%%$n}
   next_version=$p$((n+1))
 
-  echo -e "Which version are you releasing?"
+  echo -e "Which version of the Contrib Parent are you releasing?"
   read -e -p "> ($next_version) " tmp
   if [[ $tmp ]]
   then
@@ -151,7 +151,7 @@ then
   parent_version=$(mvn -q -Dexec.executable="echo" -Dexec.args='${project.parent.version}' --non-recursive exec:exec)
   cd ..
 
-  echo -e "Do you want to change the parent version?"
+  echo -e "Which version of XWiki should be used?"
   read -e -p "> ($parent_version) " tmp
   if [[ $tmp ]]
   then
