@@ -63,7 +63,7 @@ function set_parent_version() {
   cd $1
 
   echo -e "\033[0;32m* Set parent version ${PARENT_VERSION} in ${1}\033[0m"
-  mvn versions:update-parent -DgenerateBackupPoms=false -DparentVersion=[$PARENT_VERSION]
+  mvn versions:update-parent -DskipResolution=true -DgenerateBackupPoms=false -DparentVersion=$PARENT_VERSION
 
   cd ..
 }
