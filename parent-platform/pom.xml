@@ -93,6 +93,25 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.revapi</groupId>
+        <artifactId>revapi-maven-plugin</artifactId>
+        <configuration>
+          <analysisConfiguration>
+            <revapi.filter>
+              <archives>
+                <!-- Ignore all API incompatibilities from XWiki dependencies. -->
+                <exclude>
+                  <item>org\.xwiki\.commons:.*:.*</item>
+                  <item>org\.xwiki\.rendering:.*:.*</item>
+                  <item>org\.xwiki\.platform:.*:.*</item>
+                </exclude>
+              </archives>
+            </revapi.filter>
+          </analysisConfiguration>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
 
