@@ -129,6 +129,12 @@
             </systemPropertyVariables>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.sonarsource.scanner.maven</groupId>
+          <artifactId>sonar-maven-plugin</artifactId>
+          <!-- Use a scanner version supported by the SonarQube server, more recent than the one inherited -->
+          <version>5.7.0.6970</version>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
