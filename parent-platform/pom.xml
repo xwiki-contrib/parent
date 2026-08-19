@@ -118,14 +118,9 @@
     </plugins>
   </build>
 
-  <!--
-    Things that should not be used through transitive dependencies (or at all, ideally):
-      * commons-lang:commons-lang
-
-    We use test scope test in case it's needed by the test framework.
-   -->
    <dependencyManagement>
     <dependencies>
+      <!-- Try to make sure commons-lang 2 won't be triggered as transitive dependency-->
       <dependency>
         <groupId>commons-lang</groupId>
         <artifactId>commons-lang</artifactId>
@@ -162,6 +157,40 @@
           <exclusion>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <!-- Workaround a bug in WebDriverManager < 5.0.3 which download the wrong binnary on Linux -->
+      <dependency>
+        <groupId>io.github.bonigarcia</groupId>
+        <artifactId>webdrivermanager</artifactId>
+        <version>5.0.3</version>
+        <scope>test</scope>
+        <exclusions>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
