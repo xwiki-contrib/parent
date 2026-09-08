@@ -180,6 +180,10 @@
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
           </exclusion>
+          <exclusion>
+            <groupId>com.github.docker-java</groupId>
+            <artifactId>*</artifactId>
+          </exclusion>
         </exclusions>
       </dependency>
     </dependencies>
