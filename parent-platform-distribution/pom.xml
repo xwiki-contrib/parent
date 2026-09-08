@@ -50,6 +50,13 @@
     <xwiki.issueManagement.system>jira</xwiki.issueManagement.system>
     <xwiki.issueManagement.url>https://jira.xwiki.org/browse/${xwiki.issueManagement.jira.id}</xwiki.issueManagement.url>
 
+    <!-- Container images used by the version of Testcontainers coming with this version of XWiki. The default
+         ones are published on quay.io with Docker schema v1 manifests, which containerd 2.1+ (Docker 29+) refuses
+         to pull, so point to the same images published on Docker Hub instead. -->
+    <testcontainers.ryuk.image>testcontainers/ryuk:0.3.0</testcontainers.ryuk.image>
+    <testcontainers.sshd.image>testcontainers/sshd:1.0.0</testcontainers.sshd.image>
+    <testcontainers.vncrecorder.image>testcontainers/vnc-recorder:1.1.0</testcontainers.vncrecorder.image>
+
     <!-- The Spoon version inherited from this XWiki version has a broken dependency -->
     <spoon.version>8.1.0</spoon.version>
   </properties>
@@ -96,6 +103,37 @@
           </execution>
         </executions>
       </plugin>
+
+      <!-- Testcontainers only takes those image names from a testcontainers.properties resource, and uses the
+           first one found on the classpath. Generate it in the test classes directory, which comes before the
+           dependencies (and thus before the one shipped in xwiki-platform-test-docker, whose only property is
+           kept below). Change the images through the properties above rather than by adding a
+           src/test/resources/testcontainers.properties, which is copied to the same place in a later phase but
+           only when it is newer than the generated file. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>generate-testcontainers-configuration</id>
+            <phase>generate-test-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <mkdir dir="${project.build.testOutputDirectory}"/>
+                <echo file="${project.build.testOutputDirectory}/testcontainers.properties">checks.disable=true
+ryuk.container.image=${testcontainers.ryuk.image}
+sshd.container.image=${testcontainers.sshd.image}
+vncrecorder.container.image=${testcontainers.vncrecorder.image}
+</echo>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
     </plugins>
   </build>
 
