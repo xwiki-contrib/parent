@@ -51,6 +51,9 @@
     <xwiki.issueManagement.system>jira</xwiki.issueManagement.system>
     <xwiki.issueManagement.url>https://jira.xwiki.org/browse/${xwiki.issueManagement.jira.id}</xwiki.issueManagement.url>
 
+    <!-- Image used by Testcontainers for the throwaway container it runs to inspect the Docker environment -->
+    <testcontainers.tinyimage.image>alpine:3.5</testcontainers.tinyimage.image>
+
     <!-- The Spoon version inherited from this XWiki version has a broken dependency -->
     <spoon.version>8.1.0</spoon.version>
   </properties>
@@ -97,6 +100,56 @@
           </execution>
         </executions>
       </plugin>
+      <!-- Pin the image Testcontainers uses for its throwaway inspection container and pull it with the Docker
+           client, because Testcontainers checks whether it is already there by listing the images with the
+           "filter" query parameter, which the Docker daemon has dropped: the daemon answers with all the images
+           instead, Testcontainers concludes that the image is there, skips the pull and then fails to create the
+           container. That check is only reached when the build itself runs inside a container, as it does on the
+           CI agents. The image name is taken from a testcontainers.properties resource, generated in the test
+           classes directory so that the pinned and the pulled name cannot drift apart. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>generate-testcontainers-configuration</id>
+            <phase>generate-test-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target xmlns:if="ant:if">
+                <available classname="org.xwiki.test.docker.junit5.UITest" classpathref="maven.test.classpath"
+                  property="xwiki.test.docker.available"/>
+                <mkdir if:set="xwiki.test.docker.available" dir="${project.build.testOutputDirectory}"/>
+                <propertyfile if:set="xwiki.test.docker.available"
+                  file="${project.build.testOutputDirectory}/testcontainers.properties">
+                  <entry key="tinyimage.container.image" value="${testcontainers.tinyimage.image}"/>
+                </propertyfile>
+              </target>
+            </configuration>
+          </execution>
+          <execution>
+            <id>pull-testcontainers-tinyimage</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target xmlns:if="ant:if">
+                <available classname="org.xwiki.test.docker.junit5.UITest" classpathref="maven.test.classpath"
+                  property="xwiki.test.docker.available"/>
+                <exec if:set="xwiki.test.docker.available" executable="docker" searchpath="true"
+                  failonerror="false" failifexecutionfails="false">
+                  <arg value="pull"/>
+                  <arg value="${testcontainers.tinyimage.image}"/>
+                </exec>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
     </plugins>
     <pluginManagement>
       <plugins>
